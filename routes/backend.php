@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\SubCriteriaController;
 use App\Http\Controllers\Backend\IntegrityController;
 use App\Http\Controllers\Backend\EvaluationController;
+use App\Http\Controllers\Backend\StandardValueController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,3 +77,7 @@ Route::group(['as' => 'settings.', 'prefix' => 'settings'], function () {
     Route::get('mail', [SettingController::class, 'mail'])->name('mail.index');
     Route::patch('mail', [SettingController::class, 'updateMailSettings'])->name('mail.update');
 });
+
+Route::resource('standard_values', StandardValueController::class);
+
+

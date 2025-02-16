@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class StandardValue extends Model
 {
     use HasFactory;
+
+
+    protected $fillable = [
+        'type',
+        'range',
+        'conversion',
+    ];
 }
