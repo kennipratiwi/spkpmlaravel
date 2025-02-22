@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\StandardValue;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 
 class StandardValueController extends Controller
 {
@@ -65,9 +67,19 @@ class StandardValueController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(StandardValue $standardValue)
+    public function edit(Request $request, $id)
     {
-        return view('backend.standard_values.edit', compact('standardValue'));
+        // Gate::authorize('standard_values.edit');
+
+        $value = StandardValue::find($id);
+
+        if (!$value) {
+            notify()->error('Ketentuan Nilai Tidak ditemukan tidak ditemukan');
+            return back();
+        }
+
+        return view('backend.standard_values.edit', compact('value'));
+        //return view('backend.standard_values.edit', compact('standardValue'));
     }
 
     /**
@@ -77,18 +89,40 @@ class StandardValueController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, StandardValue $standardValue)
+    public function update(Request $request, $id)
     {
-        $request->validate([
+        $validation = Validator::make($request->all(), [
             'type' => 'required|string',
             'range' => 'required|string',
             'conversion' => 'required|integer|min:1|max:5',
         ]);
 
-        $standardValue->update($request->all());
+        if ($validation->fails()) {
+            notify()->error($validation->errors()->first());
+            return back();
+        }
 
-        return redirect()->route('standard_values.index')->with('success', 'Data berhasil diperbarui!');
+        $value = StandardValue::find($id);
+
+        if (!$value) {
+            notify()->error('Ketentuan Nilai tidak ditemukan');
+            return back();
+        }
+
+        $value->update([
+            'type' => $request->type,
+            'range' => $request->range,
+            'conversion' => $request->conversion,
+        ]);
+
+        notify()->success('Ketentuan Nilai berhasil diperbarui');
+        return redirect()->route('standard_values.index');
     }
+
+    // $value->update($request->all());
+
+    //     return redirect()->route('standard_values.index')->with('success', 'Data berhasil diperbarui!');
+    // }
 
     /**
      * Remove the specified resource from storage.

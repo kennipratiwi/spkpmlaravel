@@ -28,7 +28,7 @@
     <div class="row">
         <div class="col-12">
             <!-- form start -->
-            <form role="form" id="userFrom" method="POST"
+            <form role="form" id="userForm" method="POST"
                   action="{{ isset($user) ? route('users.update', $user->id) : route('users.store') }}"
                   enctype="multipart/form-data">
                 @csrf
@@ -121,7 +121,7 @@
                     </a>
                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
