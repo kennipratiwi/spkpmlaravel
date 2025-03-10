@@ -142,12 +142,15 @@
                                     <td>{{ $grade->user->name }}</td>
                                     <td>{{ $grade->total_grade_value }}</td>
                                     @if ($grade->total_grade_value >= 4.7)
-                                        <td style="background-color:red; color:white;">Perpanjang 12 Bulan</td>
-                                    @elseif($grade->total_grade_value >= 4)
+                                        <td style="background-color:rgb(88, 228, 69); color:white;">Perpanjang 12 Bulan</td>
+                                    @elseif ($grade->total_grade_value >= 4)
                                         <td style="background-color:rgb(25, 0, 255); color:white;">Perpanjang 6 Bulan</td>
+                                    @elseif ($grade->total_grade_value >= 2)
+                                        <td style="background-color:rgb(247, 232, 34); color:white;">Perpanjang 3 Bulan</td>
                                     @else
-                                        <td style="background-color:rgb(48, 202, 17); color:white;">Perpanjang 3 Bulan </td>
+                                        <td style="background-color:rgb(233, 34, 34); color:white;">Tidak Diperpanjang</td>
                                     @endif
+
                                     </td>
                                 </tr>
                             @empty

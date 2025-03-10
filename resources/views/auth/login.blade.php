@@ -43,7 +43,7 @@
                     {{ __('Login') }}
                 </button>
             </div><hr>
-            <center><a href=#" target="_blank" >Copyright &copy; 2025 Kenni Pratiwi</a></center>
+            <center><a href=#" target="_blank" >Copyright &copy; 2025 PT.PKSS Purwokerto</a></center>
         </form>
         <div class="image-holder"></div>
     </div>

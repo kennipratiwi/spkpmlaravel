@@ -1,7 +1,7 @@
 <div class="app-header header-shadow">
     <div class="app-header__logo">
         <div class="navbar-brand">
-            {{ setting('site_title', 'Spk Perpajang Kontrak Karyawan') }}
+            {{ setting('site_title', 'Spk Perpanjang Kontrak Karyawan') }}
         </div>
         <div class="header__pane ml-auto">
             <div>

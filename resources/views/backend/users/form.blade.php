@@ -100,9 +100,9 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button type="button" class="btn btn-warning" onclick="resetForm('userForm')">
+                                {{-- <button type="button" class="btn btn-warning" onclick="resetForm('userForm')">
                                     <i class="fas fa-redo"></i> Reset
-                                </button>
+                                </button> --}}
                                 @isset($user)
                                     <button type="submit" class="btn btn-success ml-3">
                                     <i class="fas fa-arrow-circle-up"></i> Perbarui

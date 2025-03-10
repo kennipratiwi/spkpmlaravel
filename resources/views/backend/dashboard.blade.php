@@ -17,7 +17,7 @@
                 <div>Beranda</div>
             </div>
         </div>
-       <marquee behavior="" direction=""> <h3 style="color: green;">Selamat Datang, Di Sistem Pendukung Keputusan Perpanjang Kontrak Karyawan Metode Profile Matching</h3"></marquee>
+       <marquee behavior="" direction=""> <h3 style="color: blue;">Selamat Datang, Di Sistem Pendukung Keputusan Perpanjang Kontrak Karyawan Metode Profile Matching</h3"></marquee>
     </div>
 
     {{-- Tampilan admin --}}

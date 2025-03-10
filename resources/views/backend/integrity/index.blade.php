@@ -35,7 +35,7 @@
                             <th>Deskripsi</th>
                             <th>Bobot</th>
                             <th>Gap</th>
-                            <th>Dibuat</th>
+                            {{-- <th>Dibuat</th> --}}
                             <th>Aksi</th>
                         </tr>
                         </thead>
@@ -46,7 +46,7 @@
                                     <td>{{ $integrity->description }}</td>
                                     <td>{{ $integrity->integrity }}</td>
                                     <td>{{ $integrity->difference_value }}</td>
-                                    <td>{{ $integrity->created_at->diffForHumans() }}</td>
+                                    {{-- <td>{{ $integrity->created_at->diffForHumans() }}</td> --}}
                                     <td>
                                         <a class="btn btn-warning btn-sm" data-toggle="tooltip" title="Edit" href="{{ route('integrity.edit', $integrity->id) }}">
                                             <i class="fas fa-edit"></i>
