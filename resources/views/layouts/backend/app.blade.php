@@ -16,6 +16,7 @@
     <link href="{{ asset('css/backend.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @stack('css')
+    @livewireStyles
 </head>
 <body>
 <div id="app" class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
@@ -32,6 +33,7 @@
     @include('backend.modal.evaluation')
 </div>
 <!-- Scripts -->
+@livewireScripts
 <script src="{{ asset('js/backend.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/script.js') }}"></script>

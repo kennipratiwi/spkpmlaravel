@@ -19,10 +19,7 @@ class UserController extends Controller
     {
         Gate::authorize('users.index');
 
-        $users = User::with(['role', 'performance_assesment'])
-            ->whereHas('role', function ($q) {
-                $q->where('slug', 'employee');
-            })->get();
+        $users = User::with(['role', 'performance_assesment'])->get();
 
         return view('backend.users.index', compact('users'));
     }
@@ -31,42 +28,40 @@ class UserController extends Controller
     {
         Gate::authorize('users.create');
 
-        $roles = Role::select('id', 'name')->get();
-
-        return view('backend.users.form', compact('roles'));
+        return view('backend.users.form');
     }
 
-    public function store(Request $request)
-    {
-        $validation = Validator::make($request->all(), [
-            'registration_code' => 'required|integer|unique:App\Models\User,registration_code',
-            'name' => 'required|string|min:3|max:100',
-            'username' => 'required|string|min:3|max:100|unique:users,username',
-            'password' => 'required|string|min:6|confirmed',
-            'role' => 'required',
-        ]);
+    // public function store(Request $request)
+    // {
+    //     $validation = Validator::make($request->all(), [
+    //         'registration_code' => 'required|integer|unique:App\Models\User,registration_code',
+    //         'name' => 'required|string|min:3|max:100',
+    //         'username' => 'required|string|min:3|max:100|unique:users,username',
+    //         'password' => 'required|string|min:6|confirmed',
+    //         'role' => 'required',
+    //     ]);
 
-        if ($validation->fails()) {
-            notify()->error($validation->errors()->first());
-            return back();
-        }
+    //     if ($validation->fails()) {
+    //         notify()->error($validation->errors()->first());
+    //         return back();
+    //     }
 
-        $user = User::create([
-            'role_id' => $request->role,
-            'name' => $request->name,
-            'username' => $request->username,
-            'password' => Hash::make($request->password),
-            'status' => $request->status,
-            'registration_code' => $request->registration_code,
-        ]);
+    //     $user = User::create([
+    //         'role_id' => $request->role,
+    //         'name' => $request->name,
+    //         'username' => $request->username,
+    //         'password' => Hash::make($request->password),
+    //         'status' => $request->status,
+    //         'registration_code' => $request->registration_code,
+    //     ]);
 
-        if ($request->hasFile('avatar')) {
-            $user->addMedia($request->avatar)->toMediaCollection('avatar');
-        }
+    //     if ($request->hasFile('avatar')) {
+    //         $user->addMedia($request->avatar)->toMediaCollection('avatar');
+    //     }
 
-        notify()->success('User berhasil ditambahkan');
-        return redirect()->route('users.index');
-    }
+    //     notify()->success('User berhasil ditambahkan');
+    //     return redirect()->route('users.index');
+    // }
 
     public function show(User $user)
     {
@@ -77,45 +72,44 @@ class UserController extends Controller
     {
         Gate::authorize('users.edit');
 
-        $roles = Role::all();
-        return view('backend.users.form', compact('roles', 'user'));
+        return view('backend.users.form', compact('user'));
     }
 
-    public function update(Request $request, User $user)
-    {
-        $validation = Validator::make($request->all(), [
-            'registration_code' => 'required|integer',
-            'name' => 'required|string|min:3|max:100',
-            'username' => 'nullable|string|min:3|max:100',
-            'password' => 'nullable|string|min:6|confirmed',
-            'role' => 'required',
-        ]);
+    // public function update(Request $request, User $user)
+    // {
+    //     $validation = Validator::make($request->all(), [
+    //         'registration_code' => 'required|integer',
+    //         'name' => 'required|string|min:3|max:100',
+    //         'username' => 'nullable|string|min:3|max:100',
+    //         'password' => 'nullable|string|min:6|confirmed',
+    //         'role' => 'required',
+    //     ]);
 
-        if ($validation->fails()) {
-            notify()->error($validation->errors()->first());
-            return back();
-        }
+    //     if ($validation->fails()) {
+    //         notify()->error($validation->errors()->first());
+    //         return back();
+    //     }
 
-        $data = [
-            'role_id' => $request->role,
-            'name' => $request->name,
-            'username' => $request->username,
-            'status' => $request->status,
-        ];
+    //     $data = [
+    //         'role_id' => $request->role,
+    //         'name' => $request->name,
+    //         'username' => $request->username,
+    //         'status' => $request->status,
+    //     ];
 
-        if (isset($request->password) && $request->password) {
-            $data['password'] = bcrypt($request->password);
-        }
+    //     if (isset($request->password) && $request->password) {
+    //         $data['password'] = bcrypt($request->password);
+    //     }
 
-        $user->update($data);
+    //     $user->update($data);
 
-        if ($request->hasFile('avatar')) {
-            $user->addMedia($request->avatar)->toMediaCollection('avatar');
-        }
+    //     if ($request->hasFile('avatar')) {
+    //         $user->addMedia($request->avatar)->toMediaCollection('avatar');
+    //     }
 
-        notify()->success('User berhasil diperbarui');
-        return redirect()->route('users.index');
-    }
+    //     notify()->success('User berhasil diperbarui');
+    //     return redirect()->route('users.index');
+    // }
 
     public function destroy(User $user)
     {

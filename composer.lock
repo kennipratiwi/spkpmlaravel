@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ef023f128ca74f6f3d56483a02520151",
+    "content-hash": "d5286a97ec9f264400914384cdba92c8",
     "packages": [
         {
             "name": "appslabke/lara-izitoast",

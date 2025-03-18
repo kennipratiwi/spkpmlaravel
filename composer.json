@@ -14,17 +14,17 @@
         "browner12/helpers": "^3.1",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
+        "fzaninotto/faker": "^1.9.1",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.0",
         "laravel/socialite": "^5.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
-        "livewire/livewire": "^2.6",
+        "livewire/livewire": "^2.12",
         "msztorc/laravel-env": "^1.2",
         "rachidlaasri/laravel-installer": "^4.1",
         "spatie/laravel-backup": "^6.9",
-        "spatie/laravel-medialibrary": "^8.0.0",
-        "fzaninotto/faker": "^1.9.1"
+        "spatie/laravel-medialibrary": "^8.0.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.3",
